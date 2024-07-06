@@ -1,0 +1,38 @@
+{
+    "include": ["assets/react/types/*.d.ts", "assets/**/*.ts", "assets/**/*.tsx", ],
+    "exclude": ["node_modules", "src"],
+    "compilerOptions": {
+        "target": "ES2016",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        // "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "strict": true,
+        // "importHelpers": true,
+        "allowSyntheticDefaultImports": true,
+        "jsx": "preserve",
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        // "declaration": false,
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "removeComments": true,
+        // "keyofStringsOnly": true,
+        // "experimentalDecorators": true,
+        // "emitDecoratorMetadata": true,
+        // "preserveConstEnums": true,
+        "sourceMap": true,
+        "allowJs": true,
+        "incremental": true,
+        "typeRoots": [
+          "./node_modules/@types",
+          "assets/react/types"
+        ],
+        "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    }
+}

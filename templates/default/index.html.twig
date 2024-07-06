@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <div {{ stimulus_controller('hello') }}>
+    ...
+    </div>
+
+    {% set template = '<div id="tres" ' ~  stimulus_controller('counter') ~ '>
+                                <div class="border p-3 m-3">
+                                    <div ' ~ stimulus_target('counter', 'count') ~ ' class="mb-2">1</div>
+                                    <div class="flex">
+                                        <button class="btn btn-primary" ' ~ stimulus_action('counter', 'less') ~ '>-</button>
+                                        <button class="btn btn-primary" ' ~ stimulus_action('counter', 'more') ~ '>+</button>
+                                        <button class="btn btn-success" ' ~ stimulus_action('counter', 'addItem') ~ '>Add item</button>
+                                    </div>
+                                    <div ' ~ stimulus_target('counter', 'inner') ~ '></div>
+                                </div>
+                            </div>' %}
+
+
+    <div {{ stimulus_controller('counter') }} data-template="{{ template|escape('html_attr') }}">
+        <div class="border p-3 m-3">
+            <div {{ stimulus_target('counter', 'count') }} class="mb-2">1</div>
+            <div class="flex">
+                <button class="btn btn-primary" {{ stimulus_action('counter', 'less') }}>-</button>
+                <button class="btn btn-primary" {{ stimulus_action('counter', 'more') }}>+</button>
+                <button class="btn btn-success" {{ stimulus_action('counter', 'addItem') }}>Add item</button>
+            </div>
+            <div {{ stimulus_target('counter', 'inner') }}>
+                <div {{ stimulus_controller('counter') }} data-template="{{ template|escape('html_attr') }}">
+                    <div class="border p-3 m-3">
+                        <div {{ stimulus_target('counter', 'count') }} class="mb-2">1</div>
+                        <div class="flex">
+                            <button class="btn btn-primary" {{ stimulus_action('counter', 'less') }}>-</button>
+                            <button class="btn btn-primary" {{ stimulus_action('counter', 'more') }}>+</button>
+                            <button class="btn btn-success" {{ stimulus_action('counter', 'addItem') }}>Add item</button>
+                        </div>
+                        <div {{ stimulus_target('counter', 'inner') }}>
+                            <div {{ stimulus_controller('counter') }} data-template="{{ template|escape('html_attr') }}">
+                                <div class="border p-3 m-3">
+                                    <div {{ stimulus_target('counter', 'count') }} class="mb-2">1</div>
+                                    <div class="flex">
+                                        <button class="btn btn-primary" {{ stimulus_action('counter', 'less') }}>-</button>
+                                        <button class="btn btn-primary" {{ stimulus_action('counter', 'more') }}>+</button>
+                                        <button class="btn btn-success" {{ stimulus_action('counter', 'addItem') }}>Add item</button>
+                                    </div>
+                                    <div {{ stimulus_target('counter', 'inner') }}></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code>/var/www/html/src/Controller/DefaultController.php</code></li>
+        <li>Your template at <code>/var/www/html/templates/default/index.html.twig</code></li>
+    </ul>
+
+    <p><a href="{{ path('app_one') }}">One</a></p>
+    <p><a href="{{ path('app_two') }}">Two</a></p>
+</div>
+{% endblock %}

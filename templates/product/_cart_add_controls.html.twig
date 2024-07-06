@@ -1,0 +1,40 @@
+{{ form_start(addToCartForm, {
+    attr: { class: 'cart-add-controls d-flex align-items-center justify-content-baseline' }
+}) }}
+    {% if addToCartForm.color is defined %}
+        <div {{ stimulus_controller('color-square', {
+                colorId: addToCartForm.vars.data.product.colors[1].id
+            }) }}>
+            {{ form_widget(addToCartForm.color, {
+                attr: stimulus_target('color-square', 'select').toArray()
+            }) }}
+            {% for color in addToCartForm.vars.data.product.colors %}
+                <button
+                    {{ stimulus_action('color-square', 'selectColor', 'click') }}
+                    {{ stimulus_target('color-square', 'colorSquare') }}
+                    type="button"
+                    class="color-square"
+                    style="background-color: rgb({{ color.red }}, {{ color.green }}, {{ color.blue }});"
+                    aria-label="choose the color red"
+                    data-color-id="{{ color.id }}"
+                ></button>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {{ form_widget(addToCartForm.quantity, {
+        attr: { class: 'mx-3' }
+    }) }}
+
+    <button class="btn btn-info btn-sm" formnovalidate>
+        +
+    </button>
+{{ form_end(addToCartForm) }}
+
+<div>
+    {{ form_errors(addToCartForm) }}
+    {% if addToCartForm.color is defined %}
+        {{ form_errors(addToCartForm.color) }}
+    {% endif %}
+    {{ form_errors(addToCartForm.quantity) }}
+</div>
