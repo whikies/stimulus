@@ -13,6 +13,14 @@
     ...
     </div>
 
+    {{ component('Alert', { message: 'Hello Twig Components!' }) }}
+
+    <twig:Alert message="Or use the fun HTML syntax!" type="danger" />
+
+    <twig:Alert message="Or use the fun HTML syntax!" type="warning" />
+
+    <twig:ProductSearch />
+
     {% set template = '<div id="tres" ' ~  stimulus_controller('counter') ~ '>
                                 <div class="border p-3 m-3">
                                     <div ' ~ stimulus_target('counter', 'count') ~ ' class="mb-2">1</div>
